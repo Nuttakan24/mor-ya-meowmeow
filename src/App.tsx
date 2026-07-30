@@ -884,7 +884,7 @@ const HERBS = [
 ];
 
 // ─── Shared components ──────────────────────────────────────────────────────
-function NavBar({ onHome, onAbout }: any) {
+function NavBar({ onHome, onAbout }) {
   return (
     <nav style={{
       position: "sticky", top: 0, zIndex: 100,
@@ -923,7 +923,7 @@ function NavBar({ onHome, onAbout }: any) {
 }
 
 // ─── HOME PAGE ──────────────────────────────────────────────────────────────
-function HomePage({ onSelectHerb }: any) {
+function HomePage({ onSelectHerb }) {
   const [search, setSearch] = useState("");
   const filtered = HERBS.filter(h =>
     h.name.includes(search) || h.latin.toLowerCase().includes(search.toLowerCase()) || h.shortDesc.includes(search)
@@ -979,8 +979,8 @@ function HomePage({ onSelectHerb }: any) {
 
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 20
+          gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
+          gap: 16
         }}>
           {filtered.map(herb => (
             <HerbCard key={herb.id} herb={herb} onClick={() => onSelectHerb(herb)} />
@@ -999,7 +999,7 @@ function HomePage({ onSelectHerb }: any) {
 }
 
 // ─── HERB CARD ──────────────────────────────────────────────────────────────
-function HerbCard({ herb, onClick }: any) {
+function HerbCard({ herb, onClick }) {
   const [hovered, setHovered] = useState(false);
   return (
     <div
@@ -1085,7 +1085,7 @@ function HerbCard({ herb, onClick }: any) {
 }
 
 // ─── DETAIL PAGE ─────────────────────────────────────────────────────────────
-function DetailPage({ herb, onBack }: any) {
+function DetailPage({ herb, onBack }) {
   const [messages, setMessages] = useState([{
     role: "assistant",
     text: `สวัสดีค่ะ 😺 มีคำถามเรื่อง${herb.name}ไหมคะ?`
@@ -1164,7 +1164,7 @@ function DetailPage({ herb, onBack }: any) {
 
       {/* Content */}
       <div style={{ maxWidth: 1000, margin: "0 auto", padding: "32px 20px 60px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24 }}>
 
           {/* COL LEFT */}
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
@@ -1192,7 +1192,7 @@ function DetailPage({ herb, onBack }: any) {
                   )}
                 </div>
               )}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 16 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 10, marginBottom: 16 }}>
                 {(herb.plantInfo||[]).map((p, i) => (
                   <div key={i} style={{ padding: "12px 14px", background: "#f0fdf4", borderRadius: 14, border: "1px solid #bbf7d0" }}>
                     <div style={{ fontSize: 20, marginBottom: 4 }}>{p.icon}</div>
@@ -1264,7 +1264,7 @@ function DetailPage({ herb, onBack }: any) {
                 <span style={{ fontSize: 26 }}>✅</span>
                 <h2 style={{ fontFamily: "'Noto Serif Thai',serif", fontSize: 20, fontWeight: 700, color: "#1B4332", margin: 0 }}>ใช้เมื่อมีอาการแบบไหน</h2>
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 24 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: 12, marginBottom: 24 }}>
                 {(herb.goodFor||[]).map((g, i) => (
                   <div key={i} style={{ padding: "18px 14px", background: "#f0fdf4", borderRadius: 18, border: "2px solid #bbf7d0", textAlign: "center" }}>
                     <div style={{ fontSize: 32, marginBottom: 8 }}>{g.icon}</div>
@@ -1357,7 +1357,7 @@ function DetailPage({ herb, onBack }: any) {
               <span style={{ fontSize: 26 }}>🍛</span>
               <h2 style={{ fontFamily: "'Noto Serif Thai', serif", fontSize: 20, fontWeight: 700, color: "#1B4332", margin: 0 }}>การนำไปใช้ในชีวิตประจำวัน</h2>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 14 }}>
               {herb.everydayUse.map((u, i) => (
                 <div key={i} style={{ padding: "18px 16px", background: "#f8f5ef", borderRadius: 18, border: "1px solid #e8f5e9", textAlign: "center" }}>
                   <div style={{ fontSize: 32, marginBottom: 10 }}>{u.icon}</div>
@@ -1382,7 +1382,7 @@ function DetailPage({ herb, onBack }: any) {
             <p style={{ fontSize: 13, color: "#6b7280", marginBottom: 16, lineHeight: 1.6 }}>
               ข้อมูลในหน้านี้เรียบเรียงจากแหล่งข้อมูลที่เชื่อถือได้ ได้แก่
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 10 }}>
               {[
                 { name: "กรมการแพทย์แผนไทยและการแพทย์ทางเลือก", url: "https://www.dtam.moph.go.th", icon: "🏛️" },
                 { name: "โรงพยาบาลเจ้าพระยาอภัยภูเบศร", url: "https://www.abhaiherb.com", icon: "🏥" },
@@ -1429,7 +1429,7 @@ function DetailPage({ herb, onBack }: any) {
           </div>
 
           {/* Horizontal body: suggested left | chat right */}
-          <div style={{ display: "grid", gridTemplateColumns: "200px 1fr", gap: 20, alignItems: "stretch" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 20, alignItems: "stretch" }}>
 
             {/* Left: suggested questions */}
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
